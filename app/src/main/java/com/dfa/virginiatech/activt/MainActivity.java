@@ -1,5 +1,6 @@
 package com.dfa.virginiatech.activt;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements SurveyFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
 
     // ~ Fields ...................................................................................
     android.app.FragmentManager fragmentManager;
@@ -107,5 +108,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+        
     }
 }
