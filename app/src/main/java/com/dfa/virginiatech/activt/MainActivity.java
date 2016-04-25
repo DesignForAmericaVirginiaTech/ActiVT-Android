@@ -15,7 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity
-        implements View.OnClickListener, SurveyFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
+        implements View.OnClickListener, SurveyFragment.OnFragmentInteractionListener,
+        CalendarFragment.OnFragmentInteractionListener,
+        NavigationView.OnNavigationItemSelectedListener {
 
     // ~ Fields ...................................................................................
     FragmentManager fragmentManager;
@@ -124,6 +126,7 @@ public class MainActivity extends AppCompatActivity
         //Create Calendar Fragment
         CalendarFragment calendarFragment = new CalendarFragment();
         Bundle args = new Bundle();
+        //args.putInt(ArticleFragment.ARG_POSITION, position);
         calendarFragment.setArguments(args);
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
