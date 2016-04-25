@@ -12,37 +12,4 @@
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <fragment
-            android:name="com.dfa.virginiatech.activt.SurveyFragment"
-            android:id="@+id/survey_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-        <fragment
-            android:name="com.dfa.virginiatech.activt.AgendaFragment"
-            android:id="@+id/agenda_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-        <fragment
-            android:name="com.dfa.virginiatech.activt.CalendarFragment"
-            android:id="@+id/calendar_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-        <fragment
-            android:name="com.dfa.virginiatech.activt.EventFragment"
-            android:id="@+id/event_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/submit"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
 </RelativeLayout>

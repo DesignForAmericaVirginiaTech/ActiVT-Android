@@ -194,6 +194,13 @@
                 android:id="@+id/r4_7"
                 android:text="@string/response4_7"/>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/submit"
+            android:text="@string/submit"
+            android:onClick="onClick"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
 </ScrollView>

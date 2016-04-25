@@ -21,6 +21,7 @@
     </string>
 
     <!-- Strings related to Survey -->
+    <string name="submit">Submit</string>
     <!-- Question 1 -->
     <string name="question_1">On what days do you workout?</string>
         <!-- Responses -->

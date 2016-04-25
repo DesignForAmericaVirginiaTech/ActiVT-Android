@@ -3,6 +3,7 @@ package com.dfa.virginiatech.activt;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,7 +16,7 @@ public class MainActivity extends AppCompatActivity
         implements SurveyFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
 
     // ~ Fields ...................................................................................
-    android.app.FragmentManager fragmentManager;
+    FragmentManager fragmentManager;
 
 
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity
 
 
         // Start Survey Fragment
+        fragmentManager = getSupportFragmentManager();
         if (findViewById(R.id.fragment_container) != null) {
             //restored from a previous state
             if (savedInstanceState != null) {
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity
             surveyFragment.setArguments(getIntent().getExtras());
 
             //Add fragment to the container
-            getSupportFragmentManager().beginTransaction()
+            fragmentManager.beginTransaction()
                     .add(R.id.fragment_container, surveyFragment).commit();
         }
     }
@@ -112,6 +114,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-        
+        //do something
     }
 }
