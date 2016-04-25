@@ -20,6 +20,47 @@
         completions."
     </string>
 
+    <!-- Strings related to Survey -->
+    <!-- Question 1 -->
+    <string name="question_1">On what days do you workout?</string>
+        <!-- Responses -->
+        <string name="response1_1">M</string>
+        <string name="response1_2">T</string>
+        <string name="response1_3">W</string>
+        <string name="response1_4">R</string>
+        <string name="response1_5">F</string>
+        <string name="response1_6">Sat</string>
+        <string name="response1_7">Sun</string>
+
+    <!-- Question 2 -->
+    <string name="question_2">Where do you prefer to workout?</string>
+        <!-- Responses -->
+        <string name="response2_1">War Memorial Gym</string>
+        <string name="response2_2">McComas Gym</string>
+        <string name="response2_3">Other</string>
+
+    <!-- Question 3 -->
+    <string name="question_3">What time of the day do you want to workout?</string>
+        <!-- Responses -->
+        <string name="response3_1">Morning</string>
+        <string name="response3_2">Midday</string>
+        <string name="response3_3">Afternoon</string>
+        <string name="response3_4">Evening</string>
+        <string name="response3_5">Night</string>
+
+    <!-- Question 4 -->
+    <string name="question_4">What types of physical activity are you interested in?</string>
+        <!-- Responses -->
+        <string name="response4_1">Cardio</string>
+        <string name="response4_2">Strength</string>
+        <string name="response4_3">Flexibility</string>
+        <string name="response4_4">Dance</string>
+        <string name="response4_5">Martial Arts</string>
+        <string name="response4_6">Spin/Cycling</string>
+        <string name="response4_7">Other</string>
+    <!-- Question 5 -->
+    <string name="question_5">Question 5</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
