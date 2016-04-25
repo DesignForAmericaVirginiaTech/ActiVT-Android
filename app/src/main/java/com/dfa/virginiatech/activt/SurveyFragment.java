@@ -17,7 +17,7 @@ import android.view.ViewGroup;
  * Use the {@link SurveyFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SurveyFragment extends Fragment implements View.OnClickListener{
+public class SurveyFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -65,6 +65,7 @@ public class SurveyFragment extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_survey, container, false);
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -91,10 +92,6 @@ public class SurveyFragment extends Fragment implements View.OnClickListener{
         mListener = null;
     }
 
-    @Override
-    public void onClick(View v) {
-        //take survey responses and do something with them
-    }
 
     /**
      * This interface must be implemented by activities that contain this

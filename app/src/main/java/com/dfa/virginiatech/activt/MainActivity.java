@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,9 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity
-        implements SurveyFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
+        implements View.OnClickListener, SurveyFragment.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
 
     // ~ Fields ...................................................................................
     FragmentManager fragmentManager;
@@ -115,5 +117,22 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
         //do something
+    }
+
+    @Override
+    public void onClick(View v) {
+        //Create Calendar Fragment
+        CalendarFragment calendarFragment = new CalendarFragment();
+        Bundle args = new Bundle();
+        calendarFragment.setArguments(args);
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        //replace current survey frag
+        transaction.replace(R.id.fragment_container, calendarFragment);
+        transaction.addToBackStack(null);
+
+        //commit
+        transaction.commit();
     }
 }
