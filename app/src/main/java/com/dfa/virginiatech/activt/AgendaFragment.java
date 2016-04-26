@@ -86,14 +86,9 @@ public class AgendaFragment extends Fragment {
         titleDate.setText(currentDate);
         listView = (ListView) rootView.findViewById(R.id.list);
         fragmentManager = getActivity().getSupportFragmentManager();
-        String[] values = new String[] { "Event 1",
-                "Event 2",
-                "Event 3",
-                "Event 4",
-                "Event 5",
-                "Event 6",
-                "Event 7",
-                "Event 8"
+        String[] values = new String[] { "Body Pump",
+                "Yoga",
+                "Dance Class"
         };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getActivity(),

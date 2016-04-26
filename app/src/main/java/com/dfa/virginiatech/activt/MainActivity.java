@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity
     // ~ Fields ...................................................................................
     FragmentManager fragmentManager;
     Calendar timeOfEvent;
+    private String selectedDate;
 
 
     @Override
@@ -169,7 +170,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-        String selectedDate = "" + getMonth(date.getMonth()) + " " + date.getDay() + ", " + date.getYear();
+        selectedDate = "" + getMonth(date.getMonth()) + " " + date.getDay() + ", " + date.getYear();
         timeOfEvent.set(date.getYear(), date.getMonth(), date.getDay());
 
         //Create Agenda Fragment
@@ -195,11 +196,19 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onAddEvent(View v) {
+        // hard coding time values for specified app
+        timeOfEvent.set(Calendar.HOUR_OF_DAY, 11);
+        timeOfEvent.set(Calendar.MINUTE, 0);
+
         Intent calendarIntent = new Intent(Intent.ACTION_INSERT);
         calendarIntent.setType("vnd.android.cursor.item/event");
         calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, timeOfEvent.getTimeInMillis());
-        //int endTime = (int) (timeOfEvent.getTimeInMillis() + (60000*60));
-        //calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime);
+
+        // create an endOfEvent object to pass through via intent.
+        Calendar endOfEvent = timeOfEvent;
+        endOfEvent.add(Calendar.HOUR, 1);
+
+        calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endOfEvent.getTimeInMillis());
         calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, false);
         calendarIntent.putExtra(CalendarContract.Events.TITLE, "Body Pump");
         calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, "sample description");
@@ -211,6 +220,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         EventFragment eventFragment = new EventFragment();
+        Bundle args = new Bundle();
+        //put args
+
+        args.putString("selectedDate", selectedDate);
+        eventFragment.setArguments(args);
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragment_container, eventFragment);
         transaction.addToBackStack(null);
