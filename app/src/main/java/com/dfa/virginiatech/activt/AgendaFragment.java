@@ -38,6 +38,8 @@ public class AgendaFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+
+    MainActivity main;
     ListView listView;
     TextView titleDate;
 
@@ -79,6 +81,7 @@ public class AgendaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_agenda, container, false);
+        main = (MainActivity) getActivity();
         titleDate = (TextView) rootView.findViewById(R.id.event_date);
         titleDate.setText(currentDate);
         listView = (ListView) rootView.findViewById(R.id.list);
@@ -97,32 +100,8 @@ public class AgendaFragment extends Fragment {
                 android.R.layout.simple_list_item_1, android.R.id.text1, values);
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(main);
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-                // ListView Clicked item index
-                int itemPosition     = position;
-
-                // ListView Clicked item value
-                String  itemValue    = (String) listView.getItemAtPosition(position);
-
-                // Show Alert
-                Toast.makeText(getActivity(),
-                        "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
-                        .show();
-
-                EventFragment eventFragment = new EventFragment();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.fragment_container, eventFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-
-            }
-
-        });
         return rootView;
     }
 

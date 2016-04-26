@@ -1,7 +1,9 @@
 package com.dfa.virginiatech.activt;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -14,20 +16,25 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, SurveyFragment.OnFragmentInteractionListener,
         CalendarFragment.OnFragmentInteractionListener,
         AgendaFragment.OnFragmentInteractionListener, EventFragment.OnFragmentInteractionListener,
         OnDateSelectedListener,
-        NavigationView.OnNavigationItemSelectedListener {
+        NavigationView.OnNavigationItemSelectedListener, AdapterView.OnItemClickListener {
 
     // ~ Fields ...................................................................................
     FragmentManager fragmentManager;
+    Calendar timeOfEvent;
 
 
     @Override
@@ -36,6 +43,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        timeOfEvent = Calendar.getInstance();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -152,8 +161,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-        String selectedDate = ""+findMonth(date.getMonth())+" "+date.getDay()+", "+date.getYear();
-
+        String selectedDate = "" + findMonth(date.getMonth()) + " " + date.getDay() + ", " + date.getYear();
+        timeOfEvent.set(date.getYear(), date.getMonth(), date.getDay());
 
         //Create Agenda Fragment
         AgendaFragment agendaFragment = new AgendaFragment();
@@ -204,22 +213,26 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void onAddEvent() {
-        //throw event to default calendar thingy
+    public void onAddEvent(View v) {
+        Intent calendarIntent = new Intent(Intent.ACTION_INSERT);
+        calendarIntent.setType("vnd.android.cursor.item/event");
+        calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, timeOfEvent.getTimeInMillis());
+        int endTime = (int) (timeOfEvent.getTimeInMillis() + (60000*60));
+        calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime);
+        calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, false);
+        calendarIntent.putExtra(CalendarContract.Events.TITLE, "Body Pump");
+        calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, "sample description");
+        calendarIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, "War Memorial");
+        calendarIntent.putExtra(CalendarContract.Events.RRULE, "FREQ=WEEKLY");
+        startActivity(calendarIntent);
     }
 
-//    //Create Event Fragment
-//    EventFragment eventFragment = new EventFragment();
-//    Bundle args = new Bundle();
-//    //args.putString();
-//    eventFragment.setArguments(args);
-//
-//    FragmentTransaction transaction = fragmentManager.beginTransaction();
-//
-//    //replace current survey frag
-//    transaction.replace(R.id.fragment_container, eventFragment);
-//    transaction.addToBackStack(null);
-//
-//    //commit
-//    transaction.commit();
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        EventFragment eventFragment = new EventFragment();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragment_container, eventFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 }
