@@ -3,10 +3,15 @@ package com.dfa.virginiatech.activt;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 
 /**
@@ -26,6 +31,10 @@ public class CalendarFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private MainActivity main;
+
+    MaterialCalendarView widget;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +73,11 @@ public class CalendarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calendar, container, false);
+        main = (MainActivity) getActivity();
+        View v = inflater.inflate(R.layout.fragment_calendar, container, false);
+        widget = (MaterialCalendarView) v.findViewById(R.id.calendar_fragment);
+        widget.setOnDateChangedListener(main);
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
