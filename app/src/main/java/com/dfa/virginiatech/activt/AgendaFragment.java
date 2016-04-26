@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +40,8 @@ public class AgendaFragment extends Fragment {
 
     ListView listView;
     TextView titleDate;
+
+    FragmentManager fragmentManager;
 
     public AgendaFragment() {
         // Required empty public constructor
@@ -78,6 +82,7 @@ public class AgendaFragment extends Fragment {
         titleDate = (TextView) rootView.findViewById(R.id.event_date);
         titleDate.setText(currentDate);
         listView = (ListView) rootView.findViewById(R.id.list);
+        fragmentManager = getActivity().getSupportFragmentManager();
         String[] values = new String[] { "Event 1",
                 "Event 2",
                 "Event 3",
@@ -108,6 +113,12 @@ public class AgendaFragment extends Fragment {
                 Toast.makeText(getActivity(),
                         "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
                         .show();
+
+                EventFragment eventFragment = new EventFragment();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.fragment_container, eventFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
 
             }
 
