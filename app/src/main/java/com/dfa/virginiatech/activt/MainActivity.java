@@ -22,6 +22,7 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, SurveyFragment.OnFragmentInteractionListener,
         CalendarFragment.OnFragmentInteractionListener,
+        AgendaFragment.OnFragmentInteractionListener,
         OnDateSelectedListener,
         NavigationView.OnNavigationItemSelectedListener {
 
