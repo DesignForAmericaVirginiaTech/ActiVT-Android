@@ -59,8 +59,8 @@
         <string name="response4_5">Martial Arts</string>
         <string name="response4_6">Spin/Cycling</string>
         <string name="response4_7">Other</string>
-    <!-- Question 5 -->
-    <string name="question_5">Question 5</string>
+
+    <string name="add_event">Add to my calendar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

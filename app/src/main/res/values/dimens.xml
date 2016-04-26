@@ -7,7 +7,14 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+    <dimen name="large_text">30sp</dimen>
+    <dimen name="medium_text">22sp</dimen>
+    <dimen name="height">5dp</dimen>
+
     <dimen name="question_response_margin">7dp</dimen>
     <dimen name="response_bottom_margin">20dp</dimen>
     <dimen name="question_text_size">22sp</dimen>
+
+    <dimen name="event_info_text_size">22sp</dimen>
+    <dimen name="event_header_height">60dp</dimen>
 </resources>

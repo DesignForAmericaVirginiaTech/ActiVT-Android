@@ -2,6 +2,7 @@ package com.dfa.virginiatech.activt;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,9 +15,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, SurveyFragment.OnFragmentInteractionListener,
         CalendarFragment.OnFragmentInteractionListener,
+        OnDateSelectedListener,
         NavigationView.OnNavigationItemSelectedListener {
 
     // ~ Fields ...................................................................................
@@ -142,4 +148,41 @@ public class MainActivity extends AppCompatActivity
         //commit
         transaction.commit();
     }
+
+    @Override
+    public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+        //Create Agenda Fragment
+        AgendaFragment agendaFragment = new AgendaFragment();
+        Bundle args = new Bundle();
+        //put args
+        agendaFragment.setArguments(args);
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        //replace current calendar fragment
+        transaction.replace(R.id.fragment_container, agendaFragment);
+        transaction.addToBackStack(null);
+
+        //commit
+        transaction.commit();
+    }
+
+    public void onAddEvent() {
+        //throw event to default calendar thingy
+    }
+
+//    //Create Event Fragment
+//    EventFragment eventFragment = new EventFragment();
+//    Bundle args = new Bundle();
+//    //args.putString();
+//    eventFragment.setArguments(args);
+//
+//    FragmentTransaction transaction = fragmentManager.beginTransaction();
+//
+//    //replace current survey frag
+//    transaction.replace(R.id.fragment_container, eventFragment);
+//    transaction.addToBackStack(null);
+//
+//    //commit
+//    transaction.commit();
 }

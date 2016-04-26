@@ -1,15 +1,35 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.dfa.virginiatech.activt.AgendaFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/event_header_height"
+        android:background="@color/colorAccentSecondary"
+        android:orientation="horizontal"
+        android:id="@+id/header">
+        <TextView
+            android:id="@+id/event_date"
+            android:text="May 7, 2016"
+            android:textSize="@dimen/event_info_text_size"
+            android:textColor="@color/eventDateTextColor"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/list"
+        android:background="@color/colorAccentCreamLight"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header">
 
     </ListView>
 
-</FrameLayout>
+</RelativeLayout>
