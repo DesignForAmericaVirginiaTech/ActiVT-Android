@@ -152,10 +152,15 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
+        String selectedDate = ""+findMonth(date.getMonth())+" "+date.getDay()+", "+date.getYear();
+
+
         //Create Agenda Fragment
         AgendaFragment agendaFragment = new AgendaFragment();
         Bundle args = new Bundle();
         //put args
+
+        args.putString("selectedDate", selectedDate);
         agendaFragment.setArguments(args);
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -166,6 +171,37 @@ public class MainActivity extends AppCompatActivity
 
         //commit
         transaction.commit();
+    }
+
+    public String findMonth(int i) {
+        switch (i) {
+            case 0:
+                return "January";
+            case 1:
+                return "February";
+            case 2:
+                return "March";
+            case 3:
+                return "April";
+            case 4:
+                return "May";
+            case 5:
+                return "June";
+            case 6:
+                return "July";
+            case 7:
+                return "August";
+            case 8:
+                return "September";
+            case 9:
+                return "October";
+            case 10:
+                return "November";
+            case 11:
+                return "December";
+            default:
+                return "May";
+        }
     }
 
     public void onAddEvent() {

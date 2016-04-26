@@ -10,7 +10,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 
 /**
@@ -24,16 +27,17 @@ import android.widget.Toast;
 public class AgendaFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM1 = "selectedDate";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private String currentDate;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
     ListView listView;
+    TextView titleDate;
 
     public AgendaFragment() {
         // Required empty public constructor
@@ -61,7 +65,7 @@ public class AgendaFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            currentDate = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -71,6 +75,8 @@ public class AgendaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_agenda, container, false);
+        titleDate = (TextView) rootView.findViewById(R.id.event_date);
+        titleDate.setText(currentDate);
         listView = (ListView) rootView.findViewById(R.id.list);
         String[] values = new String[] { "Event 1",
                 "Event 2",
