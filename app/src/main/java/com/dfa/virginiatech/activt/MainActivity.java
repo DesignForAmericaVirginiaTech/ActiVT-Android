@@ -23,6 +23,7 @@ import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
+import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity
@@ -106,6 +107,13 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Switches between container fragments (survey, calendar, agenda) when the user clicks
+     * their desired fragment from the sidebar.
+     *
+     * @param item
+     * @return
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -161,7 +169,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-        String selectedDate = "" + findMonth(date.getMonth()) + " " + date.getDay() + ", " + date.getYear();
+        String selectedDate = "" + getMonth(date.getMonth()) + " " + date.getDay() + ", " + date.getYear();
         timeOfEvent.set(date.getYear(), date.getMonth(), date.getDay());
 
         //Create Agenda Fragment
@@ -182,43 +190,16 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
     }
 
-    public String findMonth(int i) {
-        switch (i) {
-            case 0:
-                return "January";
-            case 1:
-                return "February";
-            case 2:
-                return "March";
-            case 3:
-                return "April";
-            case 4:
-                return "May";
-            case 5:
-                return "June";
-            case 6:
-                return "July";
-            case 7:
-                return "August";
-            case 8:
-                return "September";
-            case 9:
-                return "October";
-            case 10:
-                return "November";
-            case 11:
-                return "December";
-            default:
-                return "May";
-        }
+    public String getMonth(int month) {
+        return new DateFormatSymbols().getMonths()[month];
     }
 
     public void onAddEvent(View v) {
         Intent calendarIntent = new Intent(Intent.ACTION_INSERT);
         calendarIntent.setType("vnd.android.cursor.item/event");
         calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, timeOfEvent.getTimeInMillis());
-        int endTime = (int) (timeOfEvent.getTimeInMillis() + (60000*60));
-        calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime);
+        //int endTime = (int) (timeOfEvent.getTimeInMillis() + (60000*60));
+        //calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime);
         calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, false);
         calendarIntent.putExtra(CalendarContract.Events.TITLE, "Body Pump");
         calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, "sample description");
