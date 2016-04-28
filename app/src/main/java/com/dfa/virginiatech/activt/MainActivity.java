@@ -242,7 +242,7 @@ public class MainActivity extends AppCompatActivity
      */
     public void onAddEvent(View v) {
         // hard coding time values for specified app
-        timeOfEvent.set(Calendar.HOUR_OF_DAY, 11);
+        timeOfEvent.set(Calendar.HOUR_OF_DAY, 16);
         timeOfEvent.set(Calendar.MINUTE, 0);
 
         Intent calendarIntent = new Intent(Intent.ACTION_INSERT);
@@ -255,9 +255,9 @@ public class MainActivity extends AppCompatActivity
 
         calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endOfEvent.getTimeInMillis());
         calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, false);
-        calendarIntent.putExtra(CalendarContract.Events.TITLE, "Body Pump");
-        calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, "sample description");
-        calendarIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, "War Memorial");
+        calendarIntent.putExtra(CalendarContract.Events.TITLE, "BODYPUMP");
+        calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, selectedDescription);
+        calendarIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, "War Memorial Gym: Dance Room");
         calendarIntent.putExtra(CalendarContract.Events.RRULE, "FREQ=WEEKLY");
         startActivity(calendarIntent);
     }

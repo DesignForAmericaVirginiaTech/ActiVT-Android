@@ -24,7 +24,7 @@
             android:gravity="left|center_vertical" />
         <TextView
             android:id="@+id/event_time"
-            android:text="11:00am"
+            android:text="4:00pm"
             android:textSize="@dimen/event_info_text_size"
             android:textColor="@color/eventDateTextColor"
             android:paddingRight="@dimen/activity_horizontal_margin"
