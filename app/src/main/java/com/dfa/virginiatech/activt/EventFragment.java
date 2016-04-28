@@ -7,10 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 
 /**
@@ -25,13 +22,14 @@ public class EventFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "selectedDate";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_PARAM2 = "selectedDescription";
 
     // TODO: Rename and change types of parameters
     private String selectedDate;
-    private String mParam2;
+    private String selectedDescription;
 
     TextView eventDate;
+    TextView eventDescription;
 
     private OnFragmentInteractionListener mListener;
 
@@ -62,7 +60,7 @@ public class EventFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             selectedDate = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            selectedDescription = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -73,6 +71,9 @@ public class EventFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_event, container, false);
         eventDate = (TextView) v.findViewById(R.id.event_date);
         eventDate.setText(selectedDate);
+        eventDescription = (TextView) v.findViewById(R.id.event_description);
+        eventDescription.setText(selectedDescription);
+
         return v;
     }
 

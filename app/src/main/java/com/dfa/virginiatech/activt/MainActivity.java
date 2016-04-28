@@ -17,7 +17,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -37,6 +36,7 @@ public class MainActivity extends AppCompatActivity
     FragmentManager fragmentManager;
     Calendar timeOfEvent;
     private String selectedDate;
+    private String selectedDescription;
 
 
     @Override
@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        selectedDescription = "BODYPUMP™ is the original barbell class that strengthens your entire body. This 60-minute workout challenges all your major muscle groups one song at a time by using the best weight-room exercises like squats, presses, lifts and curls.";
 
         // Start Survey Fragment
         fragmentManager = getSupportFragmentManager();
@@ -150,6 +151,11 @@ public class MainActivity extends AppCompatActivity
         //do something
     }
 
+    /**
+     * Called when the submit button is clicked in the Survey Fragment
+     * Starts CalendarFragment
+     * @param v the view that is clicked
+     */
     @Override
     public void onClick(View v) {
         //Create Calendar Fragment
@@ -168,6 +174,13 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
     }
 
+    /**
+     * Called when a date is selected in the CalendarFragment.
+     * Starts AgendaFragment
+     * @param widget the calendarView that is visible
+     * @param date the date that is selected or unselected
+     * @param selected true if the date has been selected, false if unselected
+     */
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
         selectedDate = "" + getMonth(date.getMonth()) + " " + date.getDay() + ", " + date.getYear();
@@ -191,10 +204,42 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
     }
 
+    /**
+     * Takes an integer 0-11 inclusive and converts it to a month as a string
+     * @param month integer 0-11 inclusive
+     * @return the name of the corresponding month as a string
+     */
     public String getMonth(int month) {
         return new DateFormatSymbols().getMonths()[month];
     }
 
+    /**
+     * Called in AgendaFragment when an item is selected
+     * Sends to EventFragment
+     * @param parent adapter view that is parent to the list
+     * @param view the view that is clicked
+     * @param position item position in the ListView
+     * @param id identification??
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        EventFragment eventFragment = new EventFragment();
+        Bundle args = new Bundle();
+        //put args
+
+        args.putString("selectedDate", selectedDate);
+        args.putString("selectedDescription", selectedDescription);
+        eventFragment.setArguments(args);
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragment_container, eventFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    /**
+     * Adds event to the default calendar.
+     * Called when Add Event button is clicked in EventFragment
+     */
     public void onAddEvent(View v) {
         // hard coding time values for specified app
         timeOfEvent.set(Calendar.HOUR_OF_DAY, 11);
@@ -217,17 +262,5 @@ public class MainActivity extends AppCompatActivity
         startActivity(calendarIntent);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        EventFragment eventFragment = new EventFragment();
-        Bundle args = new Bundle();
-        //put args
 
-        args.putString("selectedDate", selectedDate);
-        eventFragment.setArguments(args);
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_container, eventFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
 }

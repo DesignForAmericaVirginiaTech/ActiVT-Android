@@ -13,7 +13,7 @@
         android:id="@+id/linearLayout">
         <TextView
             android:id="@+id/event_date"
-            android:text="May 7, 2016"
+            android:text="Test Date"
             android:textSize="@dimen/event_info_text_size"
             android:textColor="@color/eventDateTextColor"
             android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -36,7 +36,7 @@
 
     <TextView
         android:id="@+id/event_name"
-        android:text="Body Pump!"
+        android:text="BODYPUMP"
         android:textSize="@dimen/large_text"
         android:textColor="@color/colorDarkText"
         android:background="@color/colorAccentCreamLight"
@@ -48,13 +48,28 @@
 
     <TextView
         android:id="@+id/event_description"
-        android:text="Blah Blah Blah Blah Blah Blah Blah Blah \n Blah Blah Blah Blah Blah Blah Blah Blah "
+        android:text="Test description please ignore "
         android:background="@color/colorAccentCreamDark"
         android:elevation="@dimen/height"
         android:padding="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/event_name"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/event_location"
+        android:text="War Memorial Gym: Dance Room"
+        android:background="@color/colorAccentCreamDark"
+        android:elevation="@dimen/height"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/event_description"
         android:layout_alignParentStart="true" />
 
     <Button
@@ -64,6 +79,7 @@
         android:padding="@dimen/activity_horizontal_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/activity_horizontal_margin"/>
 
 </RelativeLayout>
